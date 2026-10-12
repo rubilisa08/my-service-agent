@@ -1,0 +1,18 @@
+== 실행 조건 ==
+날짜: 2026-10-12
+모델: qwen3.5:2b
+온도: 0 (reasoning=False)
+실행 명령: python my-agent/inventory_tool.py
+시나리오: 실습 2 step1 - get_inventory 도구 직접 만들어 실행
+
+== 요청 ==
+BUSAN-02 창고의 SKU A-17 재고를 알려 줘
+
+== [1] 모델의 요청 ==
+[1] 모델의 요청: [('get_inventory', {'sku': 'A-17', 'warehouse_id': 'BUSAN-02'})]
+
+== [2] 하네스의 실행 결과 ==
+[2] 하네스의 실행 결과: {"sku": "A-17", "warehouse_id": "BUSAN-02", "available_quantity": 7, "checked_at": "2026-08-27T01:55:00+09:00"}
+
+== [3] 결과를 읽은 최종 답 ==
+[3] 결과를 읽은 최종 답: 승인된 창고 (BUSAN-02) 에서 상품 A-17 의 현재 가용 재고는 **7**개입니다.
