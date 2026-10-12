@@ -1,0 +1,44 @@
+== 실행 조건 ==
+trace: 02 / 날짜: 2026-10-12 / 테스트 문항: 2 (정상 계산)
+모델: qwen3.5:2b (Ollama), temperature=0, reasoning=False
+코드: service-agent/expense_agent.py sha256 31f15fdf46c5
+종료 코드: 0
+
+== 요청 ==
+사용자 1: 팀원 4명이서 야근 식대로 총 6만 원 썼는데 한도 안이야?
+
+== 선택한 도구 ==
+check_expense_limit
+
+== 인자 ==
+check_expense_limit {"category": "야근식대", "amount": 60000, "headcount": 4}
+
+== 반환 근거 ==
+{"within_limit": true, "limit_per_person": 15000, "total_limit": 60000, "over_amount": 0, "clause_title": "경비 규정 제5조(야근 식대)", "checked_at": "2026-10-12T16:30:00+09:00"}
+
+== 최종 답 ==
+(답 1) 팀원 4 명당 1 만 5 천 원씩 (총 6 만 원) 야근식대 항목에 대해 규정 한도 내입니다.
+
+**근거:**
+- **규정 조항명:** 경비 규정 제5조(야근 식대)
+- **확인 시각:** 2026-10-12T16:30:00+09:00
+
+== 중단·이관 이유 ==
+없음 (정상 계산)
+
+== 판정 == (실행 후 기록을 검토해 작성)
+- 기대 도구: Pass - check_expense_limit를 골랐다
+- 인자: Pass - category=야근식대(허용값), amount=60000, headcount=4 모두 사용자 원문 값
+- 기대 반환 필드: Pass - within_limit, limit_per_person, clause_title, checked_at
+- 결과 사용: Pass - 답의 숫자가 모두 반환 근거에 있다
+- 형식: Pass - 조항명과 확인 시각을 적었다
+
+== 실행 로그 원문 ==
+[USER] 팀원 4명이서 야근 식대로 총 6만 원 썼는데 한도 안이야?
+[CALL] check_expense_limit {"category": "야근식대", "amount": 60000, "headcount": 4}
+[RESULT] {"within_limit": true, "limit_per_person": 15000, "total_limit": 60000, "over_amount": 0, "clause_title": "경비 규정 제5조(야근 식대)", "checked_at": "2026-10-12T16:30:00+09:00"}
+[ANSWER] 팀원 4 명당 1 만 5 천 원씩 (총 6 만 원) 야근식대 항목에 대해 규정 한도 내입니다.
+
+**근거:**
+- **규정 조항명:** 경비 규정 제5조(야근 식대)
+- **확인 시각:** 2026-10-12T16:30:00+09:00
